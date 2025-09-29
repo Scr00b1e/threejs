@@ -8,17 +8,29 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setAnimationLoop( animate );
 document.body.appendChild( renderer.domElement );
 
-const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-const cube = new THREE.Mesh( geometry, material );
-scene.add( cube );
+const cubes = [];
 
-camera.position.z = 5;
+for (let i = 0; i < 10; i++) {
+  const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+  const cube = new THREE.Mesh( geometry, material );
+
+  cube.position.x = (Math.random() - 0.5) * 10;
+  cube.position.y = (Math.random() - 0.5) * 10;
+  cube.position.z = (Math.random() - 0.5) * 10;
+
+  scene.add( cube );
+  cubes.push(cube);
+}
+
+camera.position.z = 10;
 
 function animate() {
 
-  cube.rotation.x += 0.01;
-  cube.rotation.y += 0.01;
+  cubes.forEach((cube) => {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+  })
 
   renderer.render( scene, camera );
 
