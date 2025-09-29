@@ -12,7 +12,9 @@ const cubes = [];
 
 for (let i = 0; i < 10; i++) {
   const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-  const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+  const material = new THREE.MeshBasicMaterial( { 
+    color: Math.random() * 0x00ff00,
+  } );
   const cube = new THREE.Mesh( geometry, material );
 
   cube.position.x = (Math.random() - 0.5) * 10;
